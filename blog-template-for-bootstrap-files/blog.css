@@ -76,6 +76,7 @@ h1, h2, h3, h4, h5, h6 {
 .h-250 { height: 250px; }
 @media (min-width: 768px) {
   .h-md-250 { height: 250px; }
+  
 }
 
 .border-top { border-top: 1px solid #e5e5e5; }
@@ -100,6 +101,12 @@ h1, h2, h3, h4, h5, h6 {
   .blog-title {
     font-size: 3.5rem;
   }
+  #motorcycle {
+    width: 40%;
+    height: 40%;
+    
+  }
+
 }
 
 /* Pagination */
@@ -149,5 +156,18 @@ h1, h2, h3, h4, h5, h6 {
 	-ms-flex: 0 0 50%;
 	flex: 0 0 50%;
 	max-width: 100%;
-}}
+}
 
+#motorcycle {
+  width: 40%;
+  height: 40%;
+  
+}
+
+}
+
+#motorcycle {
+  width: 40%;
+  height: 40%;
+  
+}
