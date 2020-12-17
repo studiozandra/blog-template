@@ -1,5 +1,8 @@
 /* stylelint-disable selector-list-comma-newline-after */
-
+a {
+  color: #c3baa0;
+  text-decoration: underline;
+}
 .blog-header {
   line-height: 1;
   border-bottom: 1px solid #e5e5e5;
@@ -129,7 +132,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .blog-post-meta {
   margin-bottom: 1.25rem;
-  color: #999;
+  color: #c3baa0;
 }
 
 /*
