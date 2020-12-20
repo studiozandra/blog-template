@@ -161,16 +161,16 @@ h1, h2, h3, h4, h5, h6 {
 	max-width: 100%;
 }
 
-#motorcycle {
-  width: 40%;
-  height: 40%;
-  
-}
+
 
 }
 
 #motorcycle {
   width: 40%;
   height: 40%;
-  
+  align-self: center;
+}
+
+#zan {
+  align-self: center;
 }
