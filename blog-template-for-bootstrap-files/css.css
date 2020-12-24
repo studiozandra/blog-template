@@ -138,6 +138,10 @@ border-style: solid;
 border-color: #d1ae22;
 }
 
+.text-white {
+	color: #c3baa0 !important;
+}
+
 a.text-dark:focus, a.text-dark:hover {
   color: #fff !important;
 }
