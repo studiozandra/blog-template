@@ -22,4 +22,4 @@ Z.Kubota - [@zan_toka](https://twitter.com/zan_toka)
 
 Original blog template built for [Bootstrap](https://getbootstrap.com/) by [@mdo](https://twitter.com/mdo)
 
-Live link: [https://studiozandra.github.io/blog-template/index.html](https://studiozandra.github.io/blog-template/index.html)
+Live link: [https://studiozandra.github.io/blog-template/docs/index.html](https://studiozandra.github.io/blog-template/docs/index.html)
