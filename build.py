@@ -1,3 +1,27 @@
+pages = [
+    {
+        "filename": "content/about.html",
+        "output": "docs/about.html",
+        "title": "About",
+    },
+    {
+        "filename": "content/design.html",
+        "output": "docs/design.html",
+        "title": "Design work",
+    },
+    {
+        "filename": "content/blog.html",
+        "output": "docs/blog.html",
+        "title": "My technology blog",
+    },
+    {
+        "filename": "content/index.html",
+        "output": "docs/index.html",
+        "title": "Home",
+    },
+]
+
+
 def main():
     # main function
     print("Hello, your static site generator is runnin'")
