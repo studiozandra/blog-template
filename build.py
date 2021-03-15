@@ -37,7 +37,8 @@ def main():
 
     # Get the page elements from the new list using a loop, just print the file name, output, and title for now to test
     for page in pages:
-        print(page["filename"])
+        print('Getting\' file...', page["filename"], '...')
+        
 
 
     top_about = open("templates/top_about.html").read()
