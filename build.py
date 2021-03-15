@@ -20,6 +20,7 @@ pages = [
         "title": "Home",
     },
 ]
+# loop through this list and pull out differnt things at diff times
 
 
 def main():
@@ -33,6 +34,11 @@ def main():
     bottom = open("templates/bottom.html").read()
     full_index = top + middle + bottom
     open("docs/index.html", "w+").write(full_index)
+
+    # Get the page elements from the new list using a loop, just print the file name, output, and title for now to test
+    for page in pages:
+        print(page["filename"])
+
 
     top_about = open("templates/top_about.html").read()
     middle_about = open("content/about.html").read()
