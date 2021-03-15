@@ -7,12 +7,12 @@ pages = [
     {
         "filename": "content/design.html",
         "output": "docs/design.html",
-        "title": "Design work",
+        "title": "Design",
     },
     {
         "filename": "content/blog.html",
         "output": "docs/blog.html",
-        "title": "My technology blog",
+        "title": "Blog",
     },
     {
         "filename": "content/index.html",
@@ -37,7 +37,16 @@ def main():
 
     # Get the page elements from the new list using a loop, just print the file name, output, and title for now to test
     for page in pages:
-        print('Getting\' file...', page["filename"], '...')
+        print('Gettin\'', page["title"], 'file...', page["filename"], '...')
+        # page_title = page["title"]
+        top = open("templates/top.html").read()
+        middle = open(page["filename"]).read()
+        bottom = open("templates/bottom.html").read()
+        full_page = top + middle + bottom
+        print("writing file", page["output"])
+        open(page["output"], "w+").write(full_page)
+        
+        
         
 
 
