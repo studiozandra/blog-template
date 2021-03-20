@@ -65,10 +65,10 @@ def main():
     full_design = top_design + middle_design + bottom
     open("docs/design.html", "w+").write(full_design)
 
-    top_technology = open("templates/top_technology.html").read()
-    middle_technology = open("content/technology.html").read()
-    full_technology = top_technology + middle_technology + bottom
-    open("docs/technology.html", "w+").write(full_technology)
+    top_blog = open("templates/top_blog.html").read()
+    middle_blog = open("content/blog.html").read()
+    full_blog = top_blog + middle_blog + bottom
+    open("docs/blog.html", "w+").write(full_blog)
 
     print("hey, I ran successfully up to the end")
     
