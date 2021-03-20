@@ -33,10 +33,10 @@ def main():
     print("Hello, your static site generator is runnin'")
 
 
-    # Combining page elements header (top), content (middle) and footer (bottom)
+    # Read in the base template header and footer page elements
     base = open("templates/base.html").read()
 
-    # open("docs/index.html", "w+").write(full_index)
+    
 
     # Get the page elements from the new list using a loop
     for page in pages:
@@ -51,9 +51,6 @@ def main():
         print("writing file", page["output"])
         open(page["output"], "w+").write(full_page)
         
-        
-        
-
 
 
     print("hey, I ran successfully up to the end")
