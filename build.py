@@ -27,18 +27,34 @@ pages = [
 ]
 # loop through this list and pull out differnt things at diff times
 
-def content_sandwich(name_of_page, output_page):
+
+# add the unique title to that page
+
+def entitle_base(page_title):
 
     # Read in the base template header and footer page elements
     base = open("templates/base.html").read()
+    
+    entitled_base = base.replace("{{title}}", page_title)
+    return entitled_base
 
-    content = open(name_of_page).read()
+
+
+# smush the content in between the base page header and footer 
+
+def content_sandwich(entitled_base, content_html, output_page):
+
+    # Read in the base template header and footer page elements
+    base_page = entitled_base
+
+    content = open(content_html).read()
 
     # Use the string replace 
-    full_page = base.replace("{{content}}", content)
+    full_page = base_page.replace("{{content}}", content)
     
-    print("writing file", name_of_page)
+    print("writing file", content_html)
     return open(output_page, "w+").write(full_page)
+
 
 
 
@@ -50,17 +66,14 @@ def main():
     # Get the page elements from the new list using a loop
     for page in pages:
 
-        print('Gettin\'', page["title"], 'file...', page["filename"], '...')
+        title = page["title"]
        
         content = page["filename"]
 
-        # # Use the string replace 
-        # full_page = base.replace("{{content}}", content)
+        print('Getting', title, 'file...', content, '...')
         
-        # print("writing file", page["output"])
-        # open(page["output"], "w+").write(full_page)
-        content_sandwich(content, page["output"])
-        
+        entitled_base = entitle_base(title)
+        content_sandwich(entitled_base, content, page["output"])
 
 
     print("hey, I ran successfully up to the end")
