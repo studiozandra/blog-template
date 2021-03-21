@@ -41,6 +41,11 @@ def content_sandwich(name_of_page, output_page):
     return open(output_page, "w+").write(full_page)
 
 
+# add the unique title to that page
+
+def entitle_page()
+
+
 
 def main():
     # main function
@@ -60,6 +65,7 @@ def main():
         # print("writing file", page["output"])
         # open(page["output"], "w+").write(full_page)
         content_sandwich(content, page["output"])
+        entitle_page(content, page["title"])
         
 
 
