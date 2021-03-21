@@ -1,3 +1,6 @@
+# importing the date class datetime module
+from datetime import date
+
 pages = [
     {
         "filename": "content/about.html",
@@ -42,10 +45,10 @@ def entitle_base(page_title):
 
 # smush the content in between the base page header and footer 
 
-def content_sandwich(entitled_base, content_html, output_page):
+def content_sandwich(copyrighted_base, content_html, output_page):
 
     # Read in the base template header and footer page elements
-    base_page = entitled_base
+    base_page = copyrighted_base
 
     content = open(content_html).read()
 
@@ -55,6 +58,15 @@ def content_sandwich(entitled_base, content_html, output_page):
     print("writing file", content_html)
     return open(output_page, "w+").write(full_page)
 
+
+# write in current copyright year
+
+def copyright_year(entitled_base):
+    # creating the date object of today's date
+    current_date = date.today()
+    
+    copyrighted_base = entitled_base.replace("{{year}}", str(current_date.year))
+    return copyrighted_base
 
 
 
@@ -72,8 +84,14 @@ def main():
 
         print('Getting', title, 'file...', content, '...')
         
+        # call the function to write in the page title
         entitled_base = entitle_base(title)
-        content_sandwich(entitled_base, content, page["output"])
+
+        # call the function to write in the copyright year
+        copyrighted_base = copyright_year(entitled_base)
+
+        #call the func to write in the main content
+        content_sandwich(copyrighted_base, content, page["output"])
 
 
     print("hey, I ran successfully up to the end")
