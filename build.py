@@ -1,32 +1,68 @@
-print("Hello, your static site generator is runnin'")
+pages = [
+    {
+        "filename": "content/about.html",
+        "output": "docs/about.html",
+        "title": "About",
+    },
+    {
+        "filename": "content/design.html",
+        "output": "docs/design.html",
+        "title": "Design",
+    },
+    {
+        "filename": "content/blog.html",
+        "output": "docs/blog.html",
+        "title": "Blog",
+    },
+    {
+        "filename": "content/index.html",
+        "output": "docs/index.html",
+        "title": "Home",
+    },
+    {
+        "filename": "content/contact.html",
+        "output": "docs/contact.html",
+        "title": "Contact",
+    },
+]
+# loop through this list and pull out differnt things at diff times
+
+def content_sandwich(name_of_page, output_page):
+
+    # Read in the base template header and footer page elements
+    base = open("templates/base.html").read()
+
+    content = open(name_of_page).read()
+
+    # Use the string replace 
+    full_page = base.replace("{{content}}", content)
+    
+    print("writing file", name_of_page)
+    return open(output_page, "w+").write(full_page)
 
 
 
-# Combining page elements header (top), content (middle) and footer (bottom)
-top = open("templates/top.html").read()
-middle = open("content/index.html").read()
-bottom = open("templates/bottom.html").read()
-full_index = top + middle + bottom
-open("docs/index.html", "w+").write(full_index)
+def main():
+    # main function
+    print("Hello, your static site generator is runnin'")
 
-top_about = open("templates/top_about.html").read()
-middle_about = open("content/about.html").read()
-full_about = top_about + middle_about + bottom
-open("docs/about.html", "w+").write(full_about)
 
-top_contact = open("templates/top_contact.html").read()
-middle_contact = open("content/contact.html").read()
-full_contact = top_contact + middle_contact + bottom
-open("docs/contact.html", "w+").write(full_contact)
+    # Get the page elements from the new list using a loop
+    for page in pages:
 
-top_design = open("templates/top_design.html").read()
-middle_design = open("content/design.html").read()
-full_design = top_design + middle_design + bottom
-open("docs/design.html", "w+").write(full_design)
+        print('Gettin\'', page["title"], 'file...', page["filename"], '...')
+       
+        content = page["filename"]
 
-top_technology = open("templates/top_technology.html").read()
-middle_technology = open("content/technology.html").read()
-full_technology = top_technology + middle_technology + bottom
-open("docs/technology.html", "w+").write(full_technology)
+        # # Use the string replace 
+        # full_page = base.replace("{{content}}", content)
+        
+        # print("writing file", page["output"])
+        # open(page["output"], "w+").write(full_page)
+        content_sandwich(content, page["output"])
+        
 
-print("hey, I ran successfully up to the end")
+
+    print("hey, I ran successfully up to the end")
+    
+main()
