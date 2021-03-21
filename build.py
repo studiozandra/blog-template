@@ -28,18 +28,28 @@ pages = [
 # loop through this list and pull out differnt things at diff times
 
 
+# add the unique title to that page
 
-
-
-def content_sandwich(content_html, output_page):
-
+def entitle_base(page_title):
     # Read in the base template header and footer page elements
     base = open("templates/base.html").read()
+    print("test print", page_title)
+    entitled_base = base.replace("{{title}}", page_title)
+    return entitled_base
+
+
+# smush the content in between the base page header and footer 
+
+def content_sandwich(entitled_base, content_html, output_page):
+
+    # Read in the base template header and footer page elements
+    base_page = entitled_base
+    #base = open("templates/base.html").read()
 
     content = open(content_html).read()
 
     # Use the string replace 
-    full_page = base.replace("{{content}}", content)
+    full_page = base_page.replace("{{content}}", content)
     
     print("writing file", content_html)
     return open(output_page, "w+").write(full_page)
@@ -56,6 +66,8 @@ def main():
     for page in pages:
 
         print('Gettin\'', page["title"], 'file...', page["filename"], '...')
+
+        title = page["title"]
        
         content = page["filename"]
 
@@ -64,9 +76,9 @@ def main():
         
         # print("writing file", page["output"])
         # open(page["output"], "w+").write(full_page)
-        content_sandwich(content, page["output"])
-        # entitle_page(content, page["title"])
         
+        entitled_base = entitle_base(title)
+        content_sandwich(entitled_base, content, page["output"])
 
 
     print("hey, I ran successfully up to the end")
