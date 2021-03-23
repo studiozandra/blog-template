@@ -69,6 +69,9 @@ def copyright_year(entitled_base):
     return copyrighted_base
 
 
+# generate links automatically
+
+
 
 def main():
     # main function
