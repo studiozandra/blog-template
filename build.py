@@ -44,7 +44,7 @@ def entitle_base(page_title, nav_added_base):
 
 # smush the content in between the base page header and footer 
 
-def content_sandwich(copyrighted_base, content_html, output_page):
+def write_output_file(copyrighted_base, content_html, output_page):
 
     # Read in the base template header and footer page elements
     base_page = copyrighted_base
@@ -118,7 +118,7 @@ def main():
         copyrighted_base = copyright_year(entitled_base)
 
         #call the func to write in the main content
-        content_sandwich(copyrighted_base, content, page["output"])
+        write_output_file(copyrighted_base, content, page["output"])
 
 
     print("hey, I ran successfully up to the end")
