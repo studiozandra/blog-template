@@ -28,7 +28,6 @@ pages = [
         "title": "Contact",
     },
 ]
-# loop through this list and pull out differnt things at diff times
 
 
 # add the unique title to that page
@@ -70,7 +69,7 @@ def copyright_year(entitled_base):
 
 
 # generate nav links automatically 
-# if param === pages[filename], + inline styling of pages[title], else + pages[title]
+# if param === pages[filename], + inline styling of pages[title]
 
 def auto_links(current_page_title):
 
@@ -81,6 +80,8 @@ def auto_links(current_page_title):
 
     for page in pages:
         nav_links_html = nav_links_html + '<a class="p-2 text-muted" href="'
+
+        # replace the first instance of the directory path "content" with empty string
         nav_links_html += page['filename'].replace("content/", "", 1)
         nav_links_html += '"'
         if current_page_title == page["title"]:
