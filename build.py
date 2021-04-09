@@ -30,6 +30,15 @@ pages = [
 ]
 
 
+blog_posts = [
+
+    {"filename": "blog/1.html","date": "September 3rd, 2020","title": "Another post",},
+    {"filename": "blog/2.html","date": "November 10th, 2020","title": "Yet Another post",},
+    {"filename": "blog/3.html","date": "December 14th, 2020","title": "Razer 15 review",},
+
+]
+
+
 # add the unique title to that page
 
 def entitle_base(page_title, nav_added_base):
@@ -92,6 +101,34 @@ def auto_links(current_page_title):
         nav_added_base = base.replace('{{navlinks}}', nav_links_html)
 
     return nav_added_base
+
+
+def blog_posts():
+    # main function
+    print("Building blog posts")
+
+
+    # Get the page elements from the new list using a loop
+    for post in blog_posts:
+
+        title = page["title"]
+       
+        content = page["filename"]
+
+        print('Getting', title, 'file...', content, '...')
+
+        # # add navbar links
+        # nav_added_base = auto_links(title)
+        
+        # # call the function to write in the page title
+        # entitled_base = entitle_base(title, nav_added_base)
+
+        # # call the function to write in the copyright year
+        # copyrighted_base = copyright_year(entitled_base)
+
+        # #call the func to write in the main content
+        # write_output_file(copyrighted_base, content, page["output"])
+
 
 
 def main():
