@@ -1,6 +1,9 @@
 # importing the date class datetime module
 from datetime import date
 
+#import module to access content directory
+import os
+
 pages = [
     {
         "filename": "content/about.html",
@@ -32,12 +35,20 @@ pages = [
 
 blog_posts = [
 
-    {"filename": "blog/1.html","date": "September 3rd, 2020","title": "Another post",},
-    {"filename": "blog/2.html","date": "November 10th, 2020","title": "Yet Another post",},
-    {"filename": "blog/3.html","date": "December 14th, 2020","title": "Razer 15 review",},
+    {
+        "filename": "blog/1.html","date": "September 3rd, 2020","title": "Another post",
+    },
+    {
+        "filename": "blog/2.html","date": "November 10th, 2020","title": "Yet Another post",
+    },
+    {
+        "filename": "blog/3.html","date": "December 14th, 2020","title": "Razer 15 review",
+    },
 
 ]
 
+new_list = os.listdir("blog/")
+print(new_list)
 
 # add the unique title to that page
 
@@ -111,9 +122,9 @@ def blog_posts():
     # Get the page elements from the new list using a loop
     for post in blog_posts:
 
-        title = page["title"]
+        title = post["title"]
        
-        content = page["filename"]
+        content = post["filename"]
 
         print('Getting', title, 'file...', content, '...')
 
@@ -138,6 +149,8 @@ def main():
 
     # Get the page elements from the new list using a loop
     for page in pages:
+
+        # TODO add blog_posts, if blog then use blog title? or, call blog func outside later?
 
         title = page["title"]
        
