@@ -36,13 +36,19 @@ pages = [
 blog_posts = [
 
     {
-        "filename": "blog/1.html","date": "September 3rd, 2020","title": "Another post",
+        "filename": "blog/1.html",
+        "date": "September 3rd, 2020",
+        "title": "Another post",
     },
     {
-        "filename": "blog/2.html","date": "November 10th, 2020","title": "Yet Another post",
+        "filename": "blog/2.html",
+        "date": "November 10th, 2020",
+        "title": "Yet Another post",
     },
     {
-        "filename": "blog/3.html","date": "December 14th, 2020","title": "Razer 15 review",
+        "filename": "blog/3.html",
+        "date": "December 14th, 2020",
+        "title": "Razer 15 review",
     },
 
 ]
