@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="img/favicon.ico">
 
-    <title>{{title}}</title>
+    <title>Razer 15 review</title>
 
     <!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/blog/"> -->
 
@@ -42,7 +42,7 @@
       <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
           
-          {{navlinks}}
+          <a class="p-2 text-muted" href="about.html">About</a><a class="p-2 text-muted" href="design.html">Design</a><a class="p-2 text-muted" href="blog.html">Blog</a><a class="p-2 text-muted" href="index.html">Home</a><a class="p-2 text-muted" href="contact.html">Contact</a>
 
         </nav>
       </div>
@@ -79,7 +79,37 @@
     
 
 
-    {{content}}
+    <div class="blog-post">
+    <h2 class="blog-post-title">Coding on the Razer 15 Base Model</h2>
+    <p class="blog-post-meta">December 14, 2020</a></p>
+
+    <p>It's a gaming latop, after all. Personally I would not have purchased it for myself, because I need a numberpad on my keyboard. 
+      But as a gift from my husband, I had to give it a try.
+    </p>
+    <img src="img/razer.jpg" alt="razer laptop">
+    <hr>
+    <p>It turns out Razer 15 is not a SUPER great model for coding, IMHO.
+      Keyboard layout is awkward, its more for gamers who don't need to type a lot. There's no Home/End key.
+       I really miss numpad/num lock. I use ALT codes a lot like ALT NUM3 for hearts, ALT NUM7 for bullet points, etc. So now I can't do that without remapping my keyboard.
+       Battery life is disappointing, seems only a few hours (although my old Acer Aspire E15 was down to about 5 min of battery life so it's a step up). I got all excited because I thought it came with a power brick but it's just a huge ac adapter!
+      And the fan gets super loud sometimes, I'm still uninstalling the bloatware. Speakers are really great, though. Overall, the performance is very awesome, running as many apps as I want, with multiple tabs open, and Zoom running.
+       Ubuntu in VirtualBox runs very smoothly, no issues so far.  </p>
+   <h2>First-world problems</h2>
+    
+    <p>So I have to either</p>
+    <ul>
+      <li>Buy an external keyboard</li>
+      <li>re-map some keys at least for home/end functions</li>
+      <li>return the laptop.</li>
+    </ul>
+    <p>Since I don't want to hurt my husband's feelings by returning it, he's a sensitive guy, I'll just go for the re-mapping keys first.</p>
+    <p>One thing I've already learned is that Mac and Windows home/end keys have different behavior. The Razer has its own software for remapping keys. 
+      It's very sleek-looking, but when I changed the Ins and Del buttons to SHIFT+Ins = home and SHIFT+Del = end, I was disappointed to find 
+      that "end" to the Razer folks means "jump to the end of the file", not the end of the line! Apparently they are copying the Mac style 
+      in this regard. So that does not work for me. I used <a href="https://www.randyrants.com/category/sharpkeys/">SharpKeys</a> remapping tool instead, and set it to the F2 and F4 keys, since those keys
+      don't seem to do anything. Now I can't use ALT+F4 to close applications, but that will have to do for now.
+    </p>
+  </div><!-- /.blog-post -->
 
 
 
@@ -101,7 +131,7 @@
           <div class="p-3">
             <h4 class="font-italic">Archives</h4>
             <ol class="list-unstyled mb-0">
-              {{blog-links}}
+              <li><a href="1.html">Another post</a></li><li><a href="2.html">Yet Another post</a></li><li><a href="3.html">Razer 15 review</a></li><li><a href="4.html">yerrr ANOTHER post</a></li>
     
             </ol>
           </div>
@@ -135,7 +165,7 @@
   
   <footer class="blog-footer">
     
-    <p>Site generator developed in Python by Zandra Kubota, Copyright {{year}} || <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+    <p>Site generator developed in Python by Zandra Kubota, Copyright 2021 || <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
     <p>
       <a href="#">Back to top</a>
     </p>

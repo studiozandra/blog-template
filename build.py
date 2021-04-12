@@ -40,16 +40,19 @@ blog_posts = [
         "filename": "blog/1.html",
         "date": "September 3rd, 2020",
         "title": "Another post",
+        "output": "docs/1.html",
     },
     {
         "filename": "blog/2.html",
         "date": "November 10th, 2020",
         "title": "Yet Another post",
+        "output": "docs/2.html",
     },
     {
         "filename": "blog/3.html",
         "date": "December 14th, 2020",
         "title": "Razer 15 review",
+        "output": "docs/3.html",
     },
     
 
@@ -61,7 +64,7 @@ blog_folder_files = os.listdir("blog/")
 
 # get list of files in content folder
 content_folder_files = os.listdir("content/")
-print(content_folder_files)
+
 
 # list up just the above page filenames
 page_filename_list = ''
@@ -98,6 +101,7 @@ def strip_title_tags(html_ele):
 
 # check if any new pages exist in the content folder that are not listed above
 def check_for_new_pages():
+    print("checking for new content...")
     for page in content_folder_files:
         if (page in page_filename_list):
             print ("page Exists", page)
@@ -124,7 +128,7 @@ def check_for_new_posts():
             for line in file:
                 if ("blog-post-title" in line):
                     new_title = strip_title_tags(line)
-                    blog_posts.append({ "filename": "blog/" + b_file, "date": "today", "title": new_title })
+                    blog_posts.append({ "filename": "blog/" + b_file, "date": "today", "title": new_title, "output": "docs/" + b_file })
 
 
 
@@ -148,7 +152,10 @@ def write_output_file(copyrighted_base, content_html, output_page):
     # Read in the base template header and footer page elements
     base_page = copyrighted_base
 
-    content = open(content_html).read()
+    if len(content_html) > 300:
+        content = content_html
+    else:
+        content = open(content_html).read()
 
     # Use the string replace 
     full_page = base_page.replace("{{content}}", content)
@@ -169,13 +176,49 @@ def copyright_year(entitled_base):
 
 
 
-# generate nav links automatically 
-# if param === pages[filename], + inline styling of pages[title]
 
-def auto_links(current_page_title):
+# generate blog post archive links list (aside on content/blog.html and blg base template)
+
+def auto_blog_post_links(title):
+
+    # Read in the base page
+    if title == 'Blog':
+        blog_base = open("content/blog.html").read()
+    else:
+        blog_base = auto_links(title, 'post', 'posts')
+
+    blog_links_html = ''
+
+    for post in blog_posts:
+        blog_links_html += '<li><a href="'
+        # remove old path by replacing the first instance of the directory path "blog" with empty string
+        blog_links_html += post['filename'].replace("blog/", "", 1)
+        blog_links_html += '"'
+        blog_links_html += '>'
+        blog_links_html += post['title']
+        blog_links_html += '</a></li>'
+        archive_added_base = blog_base.replace('{{blog-links}}', blog_links_html)
+
+
+    # return content to be sandwiched
+
+    return archive_added_base
+    
+
+
+
+# generate nav links automatically 
+# if param 1 == pages[filename], + inline styling of pages[title] to show active link
+# if param 2 (items) == posts , func works for blog posts. if param 2 == pages 
+
+def auto_links(current_page_title, item, items):
 
     # Read in the base template header and footer page elements
-    base = open("templates/base.html").read()
+    if items == 'posts':
+        base = open("templates/blog_base.html").read()
+    else:
+        base = open("templates/base.html").read()
+
 
     nav_links_html = ''
 
@@ -185,7 +228,9 @@ def auto_links(current_page_title):
         # remove old path by replacing the first instance of the directory path "content" with empty string
         nav_links_html += page['filename'].replace("content/", "", 1)
         nav_links_html += '"'
-        if current_page_title == page["title"]:
+
+        # if the current 'main' loop iteration page matches the auto links loop, change link color
+        if current_page_title == page['title']:
             nav_links_html += 'style="text-decoration: none;background-color: #4a4864;"'
         nav_links_html += '>'
         nav_links_html += page['title']
@@ -195,31 +240,33 @@ def auto_links(current_page_title):
     return nav_added_base
 
 
-# def blog_posts():
-#     # main function
-#     print("Building blog posts")
 
 
-#     # Get the page elements from the new list using a loop
-#     for post in blog_posts:
+def build_blog_posts():
+    # main function
+    print("Building blog posts")
 
-#         title = post["title"]
+
+    # Get the page elements from the new list using a loop
+    for post in blog_posts:
+
+        title = post["title"]
        
-#         content = post["filename"]
+        content = post["filename"]
 
-#         print('Getting', title, 'file...', content, '...')
+        print('Getting', title, 'file...', content, '...')
 
-#         # # add navbar links
-#         # nav_added_base = auto_links(title)
+        # add navbar links
+        nav_added_base = auto_blog_post_links(title)
         
-#         # # call the function to write in the page title
-#         # entitled_base = entitle_base(title, nav_added_base)
+        # call the function to write in the page title
+        entitled_base = entitle_base(title, nav_added_base)
 
-#         # # call the function to write in the copyright year
-#         # copyrighted_base = copyright_year(entitled_base)
+        # call the function to write in the copyright year
+        copyrighted_base = copyright_year(entitled_base)
 
-#         # #call the func to write in the main content
-#         # write_output_file(copyrighted_base, content, page["output"])
+        #call the func to write in the main content
+        write_output_file(copyrighted_base, content, post["output"])
 
 
 
@@ -229,25 +276,33 @@ def main():
 
     check_for_new_pages()
 
+    check_for_new_posts()
+
+    build_blog_posts()
+
     # Get the page elements from the new list using a loop
     for page in pages:
 
-        # TODO add blog_posts, if blog then use blog title? or, call blog func outside later?
-
         title = page["title"]
-       
+
         content = page["filename"]
 
         print('Getting', title, 'file...', content, '...')
 
         # add navbar links
-        nav_added_base = auto_links(title)
+        nav_added_base = auto_links(title, 'page', 'pages')
         
         # call the function to write in the page title
         entitled_base = entitle_base(title, nav_added_base)
 
         # call the function to write in the copyright year
         copyrighted_base = copyright_year(entitled_base)
+
+        # call the func to generate and add the blog links sidebar
+
+        if page["title"] == "Blog":
+            content = auto_blog_post_links(page["title"])
+
 
         #call the func to write in the main content
         write_output_file(copyrighted_base, content, page["output"])
