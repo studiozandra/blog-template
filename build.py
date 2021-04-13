@@ -109,7 +109,7 @@ def check_for_new_pages():
             print("it's new content, dawg", page)
             file = open("content/" +page)
             for line in file:
-                if ("display-4 font-italic" in line):
+                if ("display-4" in line):
                     new_title = strip_title_tags(line)
                     pages.append({ "filename": "content/" + page, "output": "docs/" + page, "title": new_title })
 
