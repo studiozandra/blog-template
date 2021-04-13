@@ -233,7 +233,9 @@ def auto_links(current_page_title, item, items):
         if current_page_title == page['title']:
             nav_links_html += 'style="text-decoration: none;background-color: #4a4864;"'
         nav_links_html += '>'
-        nav_links_html += page['title']
+
+        # make navigation links lowercase
+        nav_links_html += page['title'].lower()
         nav_links_html += '</a>'
         nav_added_base = base.replace('{{navlinks}}', nav_links_html)
 
