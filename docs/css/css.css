@@ -70,13 +70,8 @@
 
 .bg-dark {
   background-color: #36344a !important;
-  border: thick;
-      border-top-color: currentcolor;
-      border-right-color: currentcolor;
-      border-bottom-color: currentcolor;
-      border-left-color: currentcolor;
-  border-style: solid;
-  border-color: #d1ae22;
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .09);
+
 }
 
 .card {
@@ -91,25 +86,12 @@
   min-width: 0;
   word-wrap: break-word;
   background-color: #fff;
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .09);
   background-clip: border-box;
   border: 1px solid rgba(0,0,0,.125);
   border-radius: .25rem;
   background-color: #36344a !important;
-  border: thick;
-      border-top-color: currentcolor;
-      border-top-style: none;
-      border-right-color: currentcolor;
-      border-right-style: none;
-      border-bottom-color: currentcolor;
-      border-bottom-style: none;
-      border-left-color: currentcolor;
-      border-left-style: none;
-  border-top-color: currentcolor;
-  border-right-color: currentcolor;
-  border-bottom-color: currentcolor;
-  border-left-color: currentcolor;
-  border-style: solid;
-  border-color: #d1ae22;
+
 }
 body{
   background: #282537;
@@ -121,21 +103,7 @@ body{
 }
 .bg-light {
   background-color: #323045 !important;
-  border: thick;
-  border-top-color: currentcolor;
-  border-top-style: none;
-  border-right-color: currentcolor;
-  border-right-style: none;
-  border-bottom-color: currentcolor;
-  border-bottom-style: none;
-  border-left-color: currentcolor;
-  border-left-style: none;
-border-top-color: currentcolor;
-border-right-color: currentcolor;
-border-bottom-color: currentcolor;
-border-left-color: currentcolor;
-border-style: solid;
-border-color: #d1ae22;
+
 }
 
 .text-white {
