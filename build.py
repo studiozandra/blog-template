@@ -1,35 +1,36 @@
 # importing the date class datetime module
 from datetime import date
 
-#import module to access content directory
+#import modules to access content directory files
+import glob
 import os
 
 pages = [
-    {
-        "filename": "content/about.html",
-        "output": "docs/about.html",
-        "title": "About",
-    },
-    {
-        "filename": "content/design.html",
-        "output": "docs/design.html",
-        "title": "Design",
-    },
-    {
-        "filename": "content/blog.html",
-        "output": "docs/blog.html",
-        "title": "Blog",
-    },
-    {
-        "filename": "content/index.html",
-        "output": "docs/index.html",
-        "title": "Home",
-    },
-    {
-        "filename": "content/contact.html",
-        "output": "docs/contact.html",
-        "title": "Contact",
-    },
+    # {
+    #     "filename": "content/about.html",
+    #     "output": "docs/about.html",
+    #     "title": "About",
+    # },
+    # {
+    #     "filename": "content/design.html",
+    #     "output": "docs/design.html",
+    #     "title": "Design",
+    # },
+    # {
+    #     "filename": "content/blog.html",
+    #     "output": "docs/blog.html",
+    #     "title": "Blog",
+    # },
+    # {
+    #     "filename": "content/index.html",
+    #     "output": "docs/index.html",
+    #     "title": "Home",
+    # },
+    # {
+    #     "filename": "content/contact.html",
+    #     "output": "docs/contact.html",
+    #     "title": "Contact",
+    # },
 
 ]
 
@@ -57,13 +58,14 @@ blog_posts = [
     
 
 ]
+# get list of all html files in 'content' folder
+all_html_files = glob.glob("content/*.html")
 
-# get list of files in blog folder
+
+
+# get list of files in 'blog' folder
 blog_folder_files = os.listdir("blog/")
 
-
-# get list of files in content folder
-content_folder_files = os.listdir("content/")
 
 
 # list up just the above page filenames
@@ -99,19 +101,24 @@ def strip_title_tags(html_ele):
 
 
 
-# check if any new pages exist in the content folder that are not listed above
+# check if any new pages exist in the content folder that are not hardcoded in above list
 def check_for_new_pages():
     print("checking for new content...")
-    for page in content_folder_files:
+    for page in all_html_files:
         if (page in page_filename_list):
             print ("page Exists", page)
         else:
             print("it's new content, dawg", page)
-            file = open("content/" +page)
+            file_path = page
+            file_name = os.path.basename(file_path)
+            print(file_name, "file_name")
+            name_only, extension = os.path.splitext(file_name)
+            print(name_only, "name_only")
+            file = open(page)
             for line in file:
                 if ("display-4" in line):
-                    new_title = strip_title_tags(line)
-                    pages.append({ "filename": "content/" + page, "output": "docs/" + page, "title": new_title })
+                    tagline = strip_title_tags(line)
+                    pages.append({ "filename": "content/" + file_name, "output": "docs/" + file_name, "title": name_only, "tagline": tagline  })
 
 
 
@@ -182,12 +189,13 @@ def copyright_year(entitled_base):
 def auto_blog_post_links(title):
 
     # Read in the base page
-    if title == 'Blog':
+    if title == 'blog':
         blog_base = open("content/blog.html").read()
     else:
         blog_base = auto_links(title, 'post', 'posts')
 
     blog_links_html = ''
+    
 
     for post in blog_posts:
         blog_links_html += '<li><a href="'
@@ -198,10 +206,9 @@ def auto_blog_post_links(title):
         blog_links_html += post['title']
         blog_links_html += '</a></li>'
         archive_added_base = blog_base.replace('{{blog-links}}', blog_links_html)
-
-
+        
+    
     # return content to be sandwiched
-
     return archive_added_base
     
 
@@ -302,7 +309,7 @@ def main():
 
         # call the func to generate and add the blog links sidebar
 
-        if page["title"] == "Blog":
+        if page["title"] == "blog":
             content = auto_blog_post_links(page["title"])
 
 
@@ -311,5 +318,10 @@ def main():
 
 
     print("hey, I ran successfully up to the end")
+
+
+
+# invoke the main function, avoid conflicts with other modules called "main"
     
-main()
+if __name__ == "__main__":
+    main()
