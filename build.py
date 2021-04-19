@@ -5,6 +5,13 @@ from datetime import date
 import glob
 import os
 
+# import Template class
+from jinja2 import Template
+
+
+
+
+
 pages = [
     # {
     #     "filename": "content/about.html",
@@ -140,14 +147,25 @@ def check_for_new_posts():
 
 
 
-# add the unique title to that page
+# add the unique title to that page -- added another param for content (filename)
 
-def entitle_base(page_title, nav_added_base):
+def entitle_base(page_title, content, nav_added_base):
 
     # Read in the base template header and footer page elements
+    html_content = open(content).read()
     base = nav_added_base
+
+    # create an instance of the jinja Template class
+    template = Template(base)
+
+
+    entitled_base = template.render(
+        title = page_title,
+        content = html_content,
+    )
+
     
-    entitled_base = nav_added_base.replace("{{title}}", page_title)
+    # nav_added_base.replace("{{title}}", page_title)
     return entitled_base
 
 
@@ -260,7 +278,8 @@ def build_blog_posts():
     for post in blog_posts:
 
         title = post["title"]
-       
+
+        # not the actual content, but the file/location of the content       
         content = post["filename"]
 
         print('Getting', title, 'file...', content, '...')
@@ -269,7 +288,7 @@ def build_blog_posts():
         nav_added_base = auto_blog_post_links(title)
         
         # call the function to write in the page title
-        entitled_base = entitle_base(title, nav_added_base)
+        entitled_base = entitle_base(title, content, nav_added_base)
 
         # call the function to write in the copyright year
         copyrighted_base = copyright_year(entitled_base)
@@ -294,6 +313,7 @@ def main():
 
         title = page["title"]
 
+        # not the complete content but the location of the content
         content = page["filename"]
 
         print('Getting', title, 'file...', content, '...')
@@ -302,7 +322,7 @@ def main():
         nav_added_base = auto_links(title, 'page', 'pages')
         
         # call the function to write in the page title
-        entitled_base = entitle_base(title, nav_added_base)
+        entitled_base = entitle_base(title, content, nav_added_base)
 
         # call the function to write in the copyright year
         copyrighted_base = copyright_year(entitled_base)
